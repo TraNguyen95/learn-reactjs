@@ -1,0 +1,8 @@
+.todo-list {
+  color: #ccc;
+  & > li {
+    color: #ccc;
+    text-decoration: line-through;
+    font-style: italic;
+  }
+}
