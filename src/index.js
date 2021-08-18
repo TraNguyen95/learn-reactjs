@@ -6,12 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import store from "./app/store";
 import { Provider } from "react-redux";
+import { SnackbarProvider } from "notistack";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <App />
+        <SnackbarProvider
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <App />
+        </SnackbarProvider>
       </Router>
     </Provider>
   </React.StrictMode>,

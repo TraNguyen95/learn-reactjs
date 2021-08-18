@@ -1,18 +1,21 @@
-import logo from "./logo.svg";
-import "./App.css";
-import TodoFeature from "./features/Todo";
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import productApi from "./api/productApi";
-import CounterFeature from "./features/Counter";
 import Header from "components/Header";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
+import CounterFeature from "./features/Counter";
+import { Button } from "@material-ui/core";
+import { useSnackbar } from "notistack";
 
 function App() {
+  const { enqueueSnackbar } = useSnackbar();
+  const showNoti = () => {
+    enqueueSnackbar("Register Successfully", { variant: "error" });
+  };
   return (
     <div className="App">
       <Header />
+      <Button onClick={showNoti}>Show noti</Button>
       <header className="App-header">
-        <Link to="/todo">Todo</Link>
         <Switch>
           <Route path="/todo" component={CounterFeature} />
         </Switch>
