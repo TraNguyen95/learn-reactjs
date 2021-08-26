@@ -80,6 +80,9 @@ export default function Header() {
               Tea Shop
             </Link>
           </Typography>
+          <NavLink to="/products">
+            <Button className={classes.link}>Products</Button>
+          </NavLink>
           <NavLink to="/todo">
             <Button className={classes.link}>Todo</Button>
           </NavLink>

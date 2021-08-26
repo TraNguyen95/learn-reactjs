@@ -4,7 +4,7 @@ const productsApi = {
   async getAll(params) {
     const newParams = { ...params };
     newParams._start =
-      !params.page || params._page <= 1
+      !params._page || params._page <= 1
         ? 0
         : (params._page - 1) * (params._limit || 50);
     delete newParams._page;
