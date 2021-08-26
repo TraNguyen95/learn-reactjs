@@ -5,6 +5,7 @@ import "./App.css";
 import CounterFeature from "./features/Counter";
 import { Button } from "@material-ui/core";
 import { useSnackbar } from "notistack";
+import ProductFeature from "features/Product";
 
 function App() {
   const { enqueueSnackbar } = useSnackbar();
@@ -18,6 +19,7 @@ function App() {
       <header className="App-header">
         <Switch>
           <Route path="/todo" component={CounterFeature} />
+          <Route path="/products" component={ProductFeature} />
         </Switch>
       </header>
     </div>
