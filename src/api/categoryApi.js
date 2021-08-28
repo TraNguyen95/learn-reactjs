@@ -1,11 +1,11 @@
 import axiosClient from "./axiosClient";
 
-const catygoryApi = {
+const categoryApi = {
   getAll(param) {
     const url = "/categories";
     return axiosClient.get(url);
   },
-  get(id) {
+  get(id, param) {
     const url = `/categories/${id}`;
     return axiosClient.get(url, { param });
   },
@@ -23,4 +23,4 @@ const catygoryApi = {
   },
 };
 
-export default categoryapi;
+export default categoryApi;
