@@ -1,12 +1,38 @@
-import { Box, Button, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+    borderTop: `1px solid ${theme.palette.grey[300]}`,
+  },
+  range: {
+    display: "flex",
+    flexFlow: "row nowrap",
+    alignItems: "center",
+
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    "& > span": {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
+  },
+}));
 
 FilterByPrice.propTypes = {
   onChange: PropTypes.func,
 };
 
 function FilterByPrice({ onChange }) {
+  const classes = useStyles();
   const [values, setValues] = useState({
     salePrice_gte: 0,
     salePrice_lte: 0,
@@ -26,9 +52,9 @@ function FilterByPrice({ onChange }) {
     });
   };
   return (
-    <Box>
-      <Typography variant="subtitle2">GIÁ</Typography>
-      <Box>
+    <Box className={classes.root}>
+      <Typography variant="subtitle2">CHỌN KHOẢNG GIÁ</Typography>
+      <Box className={classes.range}>
         <TextField
           name="salePrice_gte"
           value={values.salePrice_gte}
@@ -41,7 +67,12 @@ function FilterByPrice({ onChange }) {
           onChange={handleChange}
         ></TextField>
       </Box>
-      <Button variant="outlined" color="primary" onClick={handleSubmit}>
+      <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+        onClick={handleSubmit}
+      >
         Áp Dụng
       </Button>
     </Box>
