@@ -16,12 +16,10 @@ function App() {
     <div className="App">
       <Header />
       {/* <Button onClick={showNoti}>Show noti</Button> */}
+      <ProductFeature />
       <header className="App-header">
         <Switch>
           <Route path="/todo" component={CounterFeature} />
-          <Route path="/products" component={ProductFeature} />
-          <Route path="/" component={ProductFeature} />
-          <Route path="/learn-reactjs" component={ProductFeature} exact />
         </Switch>
       </header>
     </div>
