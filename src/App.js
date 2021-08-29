@@ -15,11 +15,13 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Button onClick={showNoti}>Show noti</Button> */}
+      <Button onClick={showNoti}>Show noti</Button>
       <ProductFeature />
       <header className="App-header">
         <Switch>
           <Route path="/todo" component={CounterFeature} />
+          <Route path="/products" component={ProductFeature} />
+          <Route path="/learn-reactjs" component={ProductFeature} />
         </Switch>
       </header>
     </div>
