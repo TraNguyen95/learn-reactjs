@@ -20,6 +20,7 @@ function App() {
         <Switch>
           <Route path="/todo" component={CounterFeature} />
           <Route path="/products" component={ProductFeature} />
+          <Route path="/" component={ProductFeature} exact />
         </Switch>
       </header>
     </div>

@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[500],
     zIndex: 1,
   },
+  menuLink: {
+    textDecoration: "none",
+  },
 }));
 
 const MODE = {
@@ -80,10 +83,10 @@ export default function Header() {
               Tea Shop
             </Link>
           </Typography>
-          <NavLink to="/products">
+          <NavLink to="/products" className={classes.menuLink}>
             <Button className={classes.link}>Products</Button>
           </NavLink>
-          <NavLink to="/todo">
+          <NavLink to="/todo" className={classes.menuLink}>
             <Button className={classes.link}>Todo</Button>
           </NavLink>
           {!isLoggedIn && (
