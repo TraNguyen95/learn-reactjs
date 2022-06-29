@@ -1,14 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Box, Grid } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Box, Grid } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 ProductSkeletonList.propTypes = {
   length: PropTypes.number,
 };
+
 ProductSkeletonList.defaultProps = {
   length: 6,
 };
+
 function ProductSkeletonList({ length }) {
   return (
     <Box>
