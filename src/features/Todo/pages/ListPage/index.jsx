@@ -1,115 +1,68 @@
-import React, { useState } from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
-import TodoList from '../../components/TodoList';
-import queryString from 'query-string';
-import { useEffect } from 'react';
-import { useMemo } from 'react';
-import TodoForm from '../../components/TodoForm';
-
-ListPage.propTypes = {
-
-};
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import Todolist from "../../components/Todolist";
+import TodoForm from "../../components/TodoForm";
 
 function ListPage(props) {
   const initTodoList = [
     {
       id: 1,
-      title: 'Eat',
-      status: 'new',
+      title: "Eat",
+      status: "new",
     },
     {
       id: 2,
-      title: 'Sleep',
-      status: 'completed',
+      title: "Sleep",
+      status: "completed",
     },
     {
       id: 3,
-      title: 'Code',
-      status: 'new',
+      title: "Code",
+      status: "new",
     },
   ];
+  const [todoList, setTodolist] = useState(initTodoList);
+  const [todoStatus, setTodoStatus] = useState("all");
 
-  const location = useLocation();
-  const history = useHistory();
-  const match = useRouteMatch();
-  const [todoList, setTodoList] = useState(initTodoList);
-  const [filteredStatus, setFilteredStatus] = useState(() => {
-    const params = queryString.parse(location.search);
-    return params.status || 'all';
-  });
-
-  useEffect(() => {
-    const params = queryString.parse(location.search);
-    setFilteredStatus(params.status || 'all');
-  }, [location.search]);
-
-  const handleTodoClick = (todo, idx) => {
-    // clone current array to the new one
+  const handleClickItem = (todo, idx) => {
+    console.log(todo, idx);
     const newTodoList = [...todoList];
-
-    // toggle state
     newTodoList[idx] = {
       ...newTodoList[idx],
-      status: newTodoList[idx].status === 'new' ? 'completed' : 'new',
+      status: newTodoList[idx].status === "new" ? "completed" : "new",
     };
-
-    // update todo list
-    setTodoList(newTodoList);
-  }
-
+    setTodolist(newTodoList);
+  };
   const handleShowAllClick = () => {
-    // setFilteredStatus('all');
-    const queryParams = { status: 'all' };
-    history.push({
-      pathname: match.path,
-      search: queryString.stringify(queryParams),
-    });
-  }
-
+    setTodoStatus("all");
+  };
   const handleShowCompletedClick = () => {
-    // setFilteredStatus('completed');
-    const queryParams = { status: 'completed' };
-    history.push({
-      pathname: match.path,
-      search: queryString.stringify(queryParams),
-    });
-  }
-
+    setTodoStatus("completed");
+  };
   const handleShowNewClick = () => {
-    // setFilteredStatus('new');
-    const queryParams = { status: 'new' };
-    history.push({
-      pathname: match.path,
-      search: queryString.stringify(queryParams),
-    });
-  }
-
-  const renderedTodoList = useMemo(() => {
-    return todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status);
-  }, [todoList, filteredStatus]);
-
+    setTodoStatus("new");
+  };
+  const todoFiltered = todoList.filter((todo) => {
+    return todoStatus === "all" || todoStatus === todo.status;
+  });
   const handleTodoFormSubmit = (values) => {
-    const newTodo = {
+    console.log("form submit: ", values);
+    const newItem = {
       id: todoList.length + 1,
       title: values.title,
-      status: 'new',
+      status: "new",
     };
-
-    const newTodoList = [...todoList, newTodo];
-    setTodoList(newTodoList);
+    const newTodoList = [...todoList, newItem];
+    setTodolist(newTodoList);
   };
-
   return (
     <div>
-      <h3>What to do</h3>
+      <h3>Todo Form</h3>
       <TodoForm onSubmit={handleTodoFormSubmit} />
-
-      <h3>Todo List</h3>
-      <TodoList todoList={renderedTodoList} onTodoClick={handleTodoClick} />
-
+      <Todolist todoList={todoFiltered} onTodoClick={handleClickItem} />
       <div>
         <button onClick={handleShowAllClick}>Show All</button>
-        <button onClick={handleShowCompletedClick}>Show Completed</button>
+        <button onClick={handleShowCompletedClick}>Show Complete</button>
         <button onClick={handleShowNewClick}>Show New</button>
       </div>
     </div>

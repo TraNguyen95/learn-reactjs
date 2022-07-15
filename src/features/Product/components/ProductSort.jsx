@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Tab, Tabs } from '@material-ui/core';
+import React from "react";
+import PropTypes from "prop-types";
+import { Tab, Tabs } from "@material-ui/core";
 
 ProductSort.propTypes = {
   currentSort: PropTypes.string.isRequired,
@@ -8,20 +8,19 @@ ProductSort.propTypes = {
 };
 
 function ProductSort({ currentSort, onChange }) {
-  const handleSortChange = (event, newValue) => {
+  const handleChange = (e, newValue) => {
     if (onChange) onChange(newValue);
   };
-
   return (
     <Tabs
       value={currentSort}
       indicatorColor="primary"
       textColor="primary"
-      onChange={handleSortChange}
+      onChange={handleChange}
       aria-label="disabled tabs example"
     >
       <Tab label="Giá thấp tới cao" value="salePrice:ASC"></Tab>
-      <Tab label="Giá cao xuống thấp" value="salePrice:DESC"></Tab>
+      <Tab label="Giá cao tới thấp" value="salePrice:DESC"></Tab>
     </Tabs>
   );
 }

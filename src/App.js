@@ -1,33 +1,29 @@
-import Header from 'components/Header';
-import ProductFeature from 'features/Product';
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import './App.css';
-import NotFound from './components/NotFound';
-import AlbumFeature from './features/Album';
-import CounterFeature from './features/Counter';
-import TodoFeature from './features/Todo';
-import CartFeature from './features/Cart';
-import Counter from './features/Counter'
+import Header from "components/Header";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
+import CounterFeature from "./features/Counter";
+import { Button } from "@material-ui/core";
+import { useSnackbar } from "notistack";
+import ProductFeature from "features/Product";
 
 function App() {
+  const { enqueueSnackbar } = useSnackbar();
+  const showNoti = () => {
+    enqueueSnackbar("Register Successfully", { variant: "error" });
+  };
   return (
-    <div className="app">
+    <div className="App">
       <Header />
-
-      <Switch>
-        <Redirect from="/home" to="/" exact />
-        <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
-
-        <Route path="/" component={CounterFeature} exact />
-        <Route path="/todos" component={TodoFeature} />
-        <Route path="/albums" component={AlbumFeature} />
-        <Route path="/products" component={ProductFeature} />
-        <Route path="/cart" component={CartFeature} />
-        <Route path="/counter" component={Counter} />
-
-        <Route component={NotFound} />
-      </Switch>
+      <Button onClick={showNoti}>Show noti</Button>
+      <ProductFeature />
+      <header className="App-header">
+        <Switch>
+          <Route path="/todo" component={CounterFeature} />
+          <Route path="/products" component={ProductFeature} />
+          <Route path="/learn-reactjs" component={ProductFeature} />
+        </Switch>
+      </header>
     </div>
   );
 }

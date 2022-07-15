@@ -1,22 +1,26 @@
-import { Box, Button, makeStyles, TextField, Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
     borderTop: `1px solid ${theme.palette.grey[300]}`,
   },
-
   range: {
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    alignItems: 'center',
+    display: "flex",
+    flexFlow: "row nowrap",
+    alignItems: "center",
 
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-
-    '& > span': {
+    "& > span": {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
     },
@@ -33,7 +37,6 @@ function FilterByPrice({ onChange }) {
     salePrice_gte: 0,
     salePrice_lte: 0,
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({
@@ -41,28 +44,36 @@ function FilterByPrice({ onChange }) {
       [name]: value,
     }));
   };
-
   const handleSubmit = () => {
     if (onChange) onChange(values);
-
     setValues({
       salePrice_gte: 0,
       salePrice_lte: 0,
     });
   };
-
   return (
     <Box className={classes.root}>
       <Typography variant="subtitle2">CHỌN KHOẢNG GIÁ</Typography>
-
       <Box className={classes.range}>
-        <TextField name="salePrice_gte" value={values.salePrice_gte} onChange={handleChange} />
+        <TextField
+          name="salePrice_gte"
+          value={values.salePrice_gte}
+          onChange={handleChange}
+        ></TextField>
         <span>-</span>
-        <TextField name="salePrice_lte" value={values.salePrice_lte} onChange={handleChange} />
+        <TextField
+          name="salePrice_lte"
+          value={values.salePrice_lte}
+          onChange={handleChange}
+        ></TextField>
       </Box>
-
-      <Button variant="outlined" color="primary" size="small" onClick={handleSubmit}>
-        Áp dụng
+      <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+        onClick={handleSubmit}
+      >
+        Áp Dụng
       </Button>
     </Box>
   );
